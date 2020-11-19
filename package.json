@@ -4,7 +4,10 @@
   "description": "This is a restaurant list which you can use to find restaurants stored in the website, and this time, it has CRUD functions!",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node models/seeds/restaurantSeeder.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +16,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
+    "method-override": "^3.0.0",
     "mongoose": "^5.10.15"
   }
 }

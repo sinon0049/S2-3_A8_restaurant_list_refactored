@@ -5,6 +5,7 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 //get restaurant.js
 const Restaurant = require('./models/restaurant')
 
@@ -13,6 +14,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 //connect and get connection status of database
 mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -32,6 +34,18 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//create new restaurant page and create function
+app.get('/restaurants/new', (req, res) => {
+    res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+    const newRestaurant = req.body
+    return Restaurant.create(newRestaurant)
+    .then(res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 //restaurant details
 app.get('/restaurants/:id', (req,res) => {
     const id = req.params.id
@@ -42,22 +56,10 @@ app.get('/restaurants/:id', (req,res) => {
 })
 
 //delete restaurant
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
     const id = req.params.id
     return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
-    .then(res.redirect('/'))
-    .catch(error => console.log(error))
-})
-
-//create new restaurant page and create function
-app.get('/new', (req, res) => {
-    res.render('new')
-})
-
-app.post('/restaurant', (req, res) => {
-    const newRestaurant = req.body
-    return Restaurant.create(newRestaurant)
     .then(res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -71,7 +73,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
     const id = req.params.id
     return Restaurant.findById(id)
     .then(restaurant => {
