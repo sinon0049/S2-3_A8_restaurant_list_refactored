@@ -2,6 +2,15 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
+//search function
+router.get('/search', (req, res) => {
+    const keyword = req.query.keyword.trim()
+    return Restaurant.find({$or: [{name: { '$regex': keyword, '$options': 'i' }}, {name_en: { '$regex': keyword, '$options': 'i' }}, {category: { '$regex': keyword, '$options': 'i' }}]})
+    .lean()
+    .then(restaurant => res.render('index', { restaurant, keyword }))
+    .catch(error => console.log(error))
+})
+
 //create new restaurant page and create function
 router.get('/new', (req, res) => {
     res.render('new')

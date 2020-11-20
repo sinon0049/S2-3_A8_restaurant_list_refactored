@@ -20,15 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(routes)
 
-//search function
-app.get('/search', (req, res) => {
-    const keyword = req.query.keyword.trim()
-    return Restaurant.find({$or: [{name: { "$regex": keyword, "$options": "i" }}, {name_en: { "$regex": keyword, "$options": "i" }}, {category: { "$regex": keyword, "$options": "i" }}]})
-    .lean()
-    .then(restaurant => res.render('index', { restaurant, keyword }))
-    .catch(error => console.log(error))
-})
-
 //listen server
 app.listen(port , () => {
     console.log(`Restaurant list is running on http://localhost:${port}`)

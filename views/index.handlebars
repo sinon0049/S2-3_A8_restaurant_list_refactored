@@ -2,7 +2,7 @@
 <div class="container search-bar">
     <div class="search-bar-outer">
         <div class="search-bar-inner">
-            <form action="/search">
+            <form action="/restaurants/search">
                 <h4 class="mb-2">尋找餐廳：</h4>
                 <div class="input-group">
                     <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
@@ -12,6 +12,20 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+<!-- dropdown box -->
+<div class="dropdown container mt-5 row justify-content-end" style="margin: auto; width: 50%">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            排序
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item {{#if sortRecord.aToZ}}active{{/if}}" href="/sort/A-Z">A->Z</a>
+        <a class="dropdown-item {{#if sortRecord.zToA}}active{{/if}}" href="/sort/Z-A">Z->A</a>
+        <a class="dropdown-item {{#if sortRecord.category}}active{{/if}}" href="/sort/category">類別</a>
+        <a class="dropdown-item {{#if sortRecord.location}}active{{/if}}" href="/sort/location">地區</a>
     </div>
 </div>
 
