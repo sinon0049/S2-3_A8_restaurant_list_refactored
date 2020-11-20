@@ -1,6 +1,6 @@
-# Restaurant list with CRUD
+# Restaurant list
 
-This is a restaurant list which you can use to find restaurants stored in the website, and this time, it has CRUD functions!
+This is a restaurant list which you can use to find restaurants stored in the website.
 
 ## Features
 
@@ -11,28 +11,27 @@ Click the restaurants, and you can see...
   + Introductions
   + Photos
   
-You can also use keywords to find your favorite restaurants faster.
-
-If you have your own pocket, you can press "新增餐廳(create a new restaurant)" to create your own favorite.
-
-Also, if you don't agree with the descriptions or restaurants, you can press "edit" to modify them, or just press "delete" to say goodbye to them.
+Besides the details above, you can also...
+  + Create restaurants you want and delete what you dislike
+  + Use "排序(sort)" to sort rstaurants by the order you want
 
 ## Download, install and run
 + Use Terminal to download the repository
 ```
-git clone https://github.com/sinon0049/S2-3_A6_restaurant_list_with_CRUD.git
+git clone https://github.com/sinon0049/S2-3_A8_restaurant_list_refactored.git
 ```
 + Download MongoDB and create a database called "restaurant-list"
-+ Download Express and Handlebars in the folder ```S2-3_A3_restaurant_list```
++ Download Express and Handlebars in the folder ```S2-3_A8_restaurant_list_refactored```
 ```
 npm i express
 npm i express-handlebars
 npm i body-parser
 npm i mongoose
+npm i method-override
 ```
 or install them together
 ```
-npm i express express-handlebars body-parser mongoose
+npm i express express-handlebars body-parser mongoose method-override
 ```
 + Use npm command to add seed data
 ```
@@ -58,3 +57,4 @@ mongodb connected!
 + Font Awesome
 + MongoDB
 + Mongoose 5.10.14
++ Method-override 3.0.0
